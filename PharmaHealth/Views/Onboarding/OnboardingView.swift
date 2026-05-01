@@ -44,7 +44,7 @@ struct OnboardingView: View {
     private var page1: some View {
         onboardingPage(
             icon: "pills.fill",
-            title: "Welcome to MedBridge",
+            title: "Welcome to PharmaHealth",
             description: "A simple way to keep track of your medications and stay on top of pharmacy refills."
         )
     }

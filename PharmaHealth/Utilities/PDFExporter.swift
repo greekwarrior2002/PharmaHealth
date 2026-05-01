@@ -22,7 +22,7 @@ struct PDFExporter {
             let margin: CGFloat = 40
             var y: CGFloat = margin
 
-            let title = "MedBridge — Appointment Prep"
+            let title = "PharmaHealth — Appointment Prep"
             let titleAttrs: [NSAttributedString.Key: Any] = [
                 .font: titleFont,
                 .foregroundColor: UIColor.label

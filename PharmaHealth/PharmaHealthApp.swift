@@ -2,10 +2,10 @@ import SwiftUI
 import SwiftData
 
 @main
-struct MedBridgeApp: App {
+struct PharmaHealthApp: App {
 
     // TODO: Replace with your bundle identifier (matching App Group entitlements).
-    static let appGroupIdentifier = "group.com.yourdomain.medbridge"
+    static let appGroupIdentifier = "group.com.yourdomain.pharmahealth"
 
     let modelContainer: ModelContainer
 
@@ -23,7 +23,7 @@ struct MedBridgeApp: App {
         // Try to use the App Group container so the widget can read the same store.
         let groupURL = FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: Self.appGroupIdentifier)?
-            .appendingPathComponent("MedBridge.store")
+            .appendingPathComponent("PharmaHealth.store")
 
         do {
             let config: ModelConfiguration

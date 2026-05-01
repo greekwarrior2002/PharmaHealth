@@ -3,9 +3,9 @@ import SwiftUI
 import SwiftData
 
 // TODO: Match the App Group identifier configured in entitlements.
-private let appGroupIdentifier = "group.com.yourdomain.medbridge"
+private let appGroupIdentifier = "group.com.yourdomain.pharmahealth"
 
-struct MedBridgeEntry: TimelineEntry {
+struct PharmaHealthEntry: TimelineEntry {
     let date: Date
     let topMedications: [WidgetMedication]
     let nextAppointment: WidgetAppointment?
@@ -24,9 +24,9 @@ struct WidgetAppointment: Identifiable {
     let date: Date
 }
 
-struct MedBridgeProvider: TimelineProvider {
-    func placeholder(in context: Context) -> MedBridgeEntry {
-        MedBridgeEntry(
+struct PharmaHealthProvider: TimelineProvider {
+    func placeholder(in context: Context) -> PharmaHealthEntry {
+        PharmaHealthEntry(
             date: .now,
             topMedications: [
                 WidgetMedication(id: UUID(), name: "Lisinopril", daysLeft: 5, quantityOnHand: 5),
@@ -36,17 +36,17 @@ struct MedBridgeProvider: TimelineProvider {
         )
     }
 
-    func getSnapshot(in context: Context, completion: @escaping (MedBridgeEntry) -> Void) {
+    func getSnapshot(in context: Context, completion: @escaping (PharmaHealthEntry) -> Void) {
         completion(loadEntry())
     }
 
-    func getTimeline(in context: Context, completion: @escaping (Timeline<MedBridgeEntry>) -> Void) {
+    func getTimeline(in context: Context, completion: @escaping (Timeline<PharmaHealthEntry>) -> Void) {
         let entry = loadEntry()
         let nextRefresh = Calendar.current.date(byAdding: .hour, value: 3, to: .now) ?? .now
         completion(Timeline(entries: [entry], policy: .after(nextRefresh)))
     }
 
-    private func loadEntry() -> MedBridgeEntry {
+    private func loadEntry() -> PharmaHealthEntry {
         let schema = Schema([
             Medication.self,
             DoseEntry.self,
@@ -56,12 +56,12 @@ struct MedBridgeProvider: TimelineProvider {
         ])
         guard let url = FileManager.default
             .containerURL(forSecurityApplicationGroupIdentifier: appGroupIdentifier)?
-            .appendingPathComponent("MedBridge.store"),
+            .appendingPathComponent("PharmaHealth.store"),
               let container = try? ModelContainer(
                 for: schema,
                 configurations: ModelConfiguration(schema: schema, url: url)
               ) else {
-            return MedBridgeEntry(date: .now, topMedications: [], nextAppointment: nil)
+            return PharmaHealthEntry(date: .now, topMedications: [], nextAppointment: nil)
         }
         let context = ModelContext(container)
 
@@ -94,7 +94,7 @@ struct MedBridgeProvider: TimelineProvider {
             WidgetAppointment(id: $0.id, doctorName: $0.doctorName, date: $0.date)
         }
 
-        return MedBridgeEntry(
+        return PharmaHealthEntry(
             date: .now,
             topMedications: Array(widgetMeds.prefix(2)),
             nextAppointment: widgetAppt
@@ -102,8 +102,8 @@ struct MedBridgeProvider: TimelineProvider {
     }
 }
 
-struct MedBridgeWidgetEntryView: View {
-    var entry: MedBridgeProvider.Entry
+struct PharmaHealthWidgetEntryView: View {
+    var entry: PharmaHealthProvider.Entry
     @Environment(\.widgetFamily) private var family
 
     var body: some View {
@@ -117,7 +117,7 @@ struct MedBridgeWidgetEntryView: View {
         VStack(alignment: .leading, spacing: 6) {
             HStack(spacing: 4) {
                 Image(systemName: "pills.fill")
-                Text("MedBridge")
+                Text("PharmaHealth")
                     .font(.caption.weight(.semibold))
             }
             .foregroundColor(.mbPrimary)
@@ -148,7 +148,7 @@ struct MedBridgeWidgetEntryView: View {
         VStack(alignment: .leading, spacing: 8) {
             HStack(spacing: 4) {
                 Image(systemName: "pills.fill")
-                Text("MedBridge")
+                Text("PharmaHealth")
                     .font(.caption.weight(.semibold))
             }
             .foregroundColor(.mbPrimary)
@@ -203,15 +203,15 @@ struct MedBridgeWidgetEntryView: View {
 }
 
 @main
-struct MedBridgeWidget: Widget {
-    let kind: String = "MedBridgeWidget"
+struct PharmaHealthWidget: Widget {
+    let kind: String = "PharmaHealthWidget"
 
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: MedBridgeProvider()) { entry in
-            MedBridgeWidgetEntryView(entry: entry)
+        StaticConfiguration(kind: kind, provider: PharmaHealthProvider()) { entry in
+            PharmaHealthWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
-        .configurationDisplayName("MedBridge")
+        .configurationDisplayName("PharmaHealth")
         .description("See your most urgent medication and next appointment.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }

@@ -86,7 +86,7 @@ struct PrepSummaryView: View {
         }
         let data = PDFExporter.exportPrepSummary(appointment: appointment, summary: summary)
         let dir = FileManager.default.temporaryDirectory
-        let url = dir.appendingPathComponent("MedBridge-Prep-\(appointment.doctorName).pdf")
+        let url = dir.appendingPathComponent("PharmaHealth-Prep-\(appointment.doctorName).pdf")
         do {
             try data.write(to: url)
             pdfURL = url
@@ -98,7 +98,7 @@ struct PrepSummaryView: View {
     private func printSummary() {
         let info = UIPrintInfo(dictionary: nil)
         info.outputType = .general
-        info.jobName = "MedBridge Prep Summary"
+        info.jobName = "PharmaHealth Prep Summary"
         let controller = UIPrintInteractionController.shared
         controller.printInfo = info
         controller.printingItem = summary

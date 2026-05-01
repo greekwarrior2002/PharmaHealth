@@ -9,8 +9,8 @@ final class SubscriptionManager: ObservableObject {
     static let revenueCatAPIKey = "YOUR_REVENUECAT_API_KEY"
 
     static let entitlementID = "premium"
-    static let monthlyProductID = "medbridge_monthly_199"
-    static let annualProductID = "medbridge_annual_1499"
+    static let monthlyProductID = "pharmahealth_monthly_199"
+    static let annualProductID = "pharmahealth_annual_1499"
 
     static let freeMedicationLimit = 2
 

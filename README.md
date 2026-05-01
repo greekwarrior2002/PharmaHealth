@@ -1,4 +1,4 @@
-# MedBridge
+# PharmaHealth
 
 Medication tracker with smart pharmacy reminders and doctor visit prep.
 
@@ -14,8 +14,8 @@ iOS 17+ · SwiftUI · SwiftData · MVVM · WidgetKit · RevenueCat
 ## Project layout
 
 ```
-MedBridge/
-├── MedBridgeApp.swift          App entry, SwiftData container, RevenueCat init
+PharmaHealth/
+├── PharmaHealthApp.swift       App entry, SwiftData container, RevenueCat init
 ├── ContentView.swift           Tab bar host + onboarding gate
 ├── Models/                     SwiftData @Model classes
 ├── Services/                   RefillCalculator, NotificationManager,
@@ -26,13 +26,13 @@ MedBridge/
 ├── Utilities/                  PDFExporter, Color/View/Date extensions
 ├── Assets.xcassets             Color set assets (light + dark variants)
 ├── Info.plist
-└── MedBridge.entitlements      App Group for shared SwiftData store
+└── PharmaHealth.entitlements   App Group for shared SwiftData store
 
-MedBridgeWidget/
-├── MedBridgeWidget.swift       WidgetKit timeline provider + small/medium views
+PharmaHealthWidget/
+├── PharmaHealthWidget.swift    WidgetKit timeline provider + small/medium views
 ├── Assets.xcassets             Mirror of color set assets
 ├── Info.plist
-└── MedBridgeWidget.entitlements
+└── PharmaHealthWidget.entitlements
 ```
 
 ## Generating the Xcode project
@@ -42,36 +42,38 @@ The repository ships with a `project.yml` for [XcodeGen](https://github.com/yona
 ```bash
 brew install xcodegen
 xcodegen generate
-open MedBridge.xcodeproj
+open PharmaHealth.xcodeproj
 ```
 
-XcodeGen is the recommended path because it keeps the project structure declarative and makes setup reproducible. If you'd rather build the project in Xcode directly, create a new SwiftUI app target named `MedBridge` and a Widget Extension named `MedBridgeWidget`, then drag in the `MedBridge/` and `MedBridgeWidget/` source folders, the assets, plists, and entitlements files. Add the RevenueCat Swift Package (see below) to the `MedBridge` target. Add the shared files (`Models/`, `Services/RefillCalculator.swift`, `Utilities/Extensions.swift`) to both targets so the widget can read the same data.
+XcodeGen is the recommended path because it keeps the project structure declarative and makes setup reproducible. If you'd rather build the project in Xcode directly, create a new SwiftUI app target named `PharmaHealth` and a Widget Extension named `PharmaHealthWidget`, then drag in the `PharmaHealth/` and `PharmaHealthWidget/` source folders, the assets, plists, and entitlements files. Add the RevenueCat Swift Package (see below) to the `PharmaHealth` target. Add the shared files (`Models/`, `Services/RefillCalculator.swift`, `Utilities/Extensions.swift`) to both targets so the widget can read the same data.
 
 ## Required configuration
 
 ### 1. Bundle identifiers
 
-Update both targets' bundle IDs from the placeholder `com.yourdomain.medbridge` (and `com.yourdomain.medbridge.widget`) to your own. Update them in:
+Update both targets' bundle IDs from the placeholder `com.yourdomain.pharmahealth` (and `com.yourdomain.pharmahealth.widget`) to your own. Update them in:
 
 - `project.yml` — `PRODUCT_BUNDLE_IDENTIFIER` for both targets
-- `MedBridge/MedBridgeApp.swift` — `appGroupIdentifier` static
-- `MedBridgeWidget/MedBridgeWidget.swift` — `appGroupIdentifier` constant
-- `MedBridge/MedBridge.entitlements` — `com.apple.security.application-groups`
-- `MedBridgeWidget/MedBridgeWidget.entitlements` — `com.apple.security.application-groups`
+- `PharmaHealth/PharmaHealthApp.swift` — `appGroupIdentifier` static
+- `PharmaHealthWidget/PharmaHealthWidget.swift` — `appGroupIdentifier` constant
+- `PharmaHealth/PharmaHealth.entitlements` — `com.apple.security.application-groups`
+- `PharmaHealthWidget/PharmaHealthWidget.entitlements` — `com.apple.security.application-groups`
 
 ### 2. App Group
 
-Create an App Group named `group.<your-bundle-id>.medbridge` in the Apple Developer Portal and enable it on both targets in *Signing & Capabilities*. The shared SwiftData store lives in this container so the widget can read it.
+Create an App Group named `group.<your-bundle-id>.pharmahealth` in the Apple Developer Portal and enable it on both targets in *Signing & Capabilities*. The shared SwiftData store lives in this container so the widget can read it.
 
 ### 3. RevenueCat API key
 
-Replace the placeholder in `MedBridge/Services/SubscriptionManager.swift`:
+Replace the placeholder in `PharmaHealth/Services/SubscriptionManager.swift`:
 
 ```swift
 static let revenueCatAPIKey = "YOUR_REVENUECAT_API_KEY"
 ```
 
-The two product identifiers used are `medbridge_monthly_199` and `medbridge_annual_1499`. These need to match products configured in App Store Connect and linked to the `premium` entitlement in your RevenueCat dashboard.
+The two product identifiers used are `pharmahealth_monthly_199` and `pharmahealth_annual_1499`. These need to match products configured in App Store Connect and linked to the `premium` entitlement in your RevenueCat dashboard.
+
+**Never hardcode third-party API keys (Anthropic, OpenAI, etc.) inside an iOS app** — anyone who installs the app can extract them from the binary. If you add an AI feature later, route the call through a backend service that holds the key.
 
 ### 4. Notifications & background modes
 
@@ -79,10 +81,10 @@ Notifications are requested at the end of onboarding. No background modes capabi
 
 ## Running on a device
 
-1. In Xcode, select the `MedBridge` scheme and a connected device.
-2. *Signing & Capabilities*: choose your team for both `MedBridge` and `MedBridgeWidget`. Add the App Group capability and select the group from step 2 above.
+1. In Xcode, select the `PharmaHealth` scheme and a connected device.
+2. *Signing & Capabilities*: choose your team for both `PharmaHealth` and `PharmaHealthWidget`. Add the App Group capability and select the group from step 2 above.
 3. Build and run (⌘R).
-4. Add the **MedBridge** widget on your Home Screen via the widget gallery.
+4. Add the **PharmaHealth** widget on your Home Screen via the widget gallery.
 
 ## Free vs Premium
 

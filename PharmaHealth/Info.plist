@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
     <key>CFBundleDisplayName</key>
-    <string>MedBridge</string>
+    <string>PharmaHealth</string>
     <key>CFBundleShortVersionString</key>
     <string>1.0</string>
     <key>CFBundleVersion</key>
@@ -32,8 +32,8 @@
         <string>UIInterfaceOrientationLandscapeRight</string>
     </array>
     <key>NSUserNotificationsUsageDescription</key>
-    <string>MedBridge sends reminders to call your pharmacy before you run out of medication, and reminds you the day before doctor visits.</string>
+    <string>PharmaHealth sends reminders to call your pharmacy before you run out of medication, and reminds you the day before doctor visits.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>MedBridge can save your appointment prep summary as a PDF.</string>
+    <string>PharmaHealth can save your appointment prep summary as a PDF.</string>
 </dict>
 </plist>

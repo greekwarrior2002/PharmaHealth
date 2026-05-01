@@ -55,7 +55,7 @@ struct PaywallView: View {
                 .font(.system(size: 44))
                 .foregroundColor(.mbPrimary)
                 .accessibilityHidden(true)
-            Text("Unlock full MedBridge")
+            Text("Unlock full PharmaHealth")
                 .font(.largeTitle.weight(.bold))
             Text("Track unlimited medications and prepare better for every doctor visit.")
                 .font(.body)

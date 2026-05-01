@@ -1,4 +1,4 @@
-name: MedBridge
+name: PharmaHealth
 options:
   bundleIdPrefix: com.yourdomain
   deploymentTarget:
@@ -22,52 +22,52 @@ packages:
     from: "5.0.0"
 
 targets:
-  MedBridge:
+  PharmaHealth:
     type: application
     platform: iOS
     sources:
-      - path: MedBridge
+      - path: PharmaHealth
         excludes:
           - "Info.plist"
-          - "MedBridge.entitlements"
+          - "PharmaHealth.entitlements"
     resources:
-      - MedBridge/Assets.xcassets
+      - PharmaHealth/Assets.xcassets
     info:
-      path: MedBridge/Info.plist
+      path: PharmaHealth/Info.plist
     entitlements:
-      path: MedBridge/MedBridge.entitlements
+      path: PharmaHealth/PharmaHealth.entitlements
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.medbridge
-        CODE_SIGN_ENTITLEMENTS: MedBridge/MedBridge.entitlements
-        INFOPLIST_FILE: MedBridge/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.pharmahealth
+        CODE_SIGN_ENTITLEMENTS: PharmaHealth/PharmaHealth.entitlements
+        INFOPLIST_FILE: PharmaHealth/Info.plist
         TARGETED_DEVICE_FAMILY: "1,2"
     dependencies:
-      - target: MedBridgeWidget
+      - target: PharmaHealthWidget
       - package: RevenueCat
         product: RevenueCat
 
-  MedBridgeWidget:
+  PharmaHealthWidget:
     type: app-extension
     platform: iOS
     sources:
-      - path: MedBridgeWidget
+      - path: PharmaHealthWidget
         excludes:
           - "Info.plist"
-          - "MedBridgeWidget.entitlements"
-      - path: MedBridge/Models
-      - path: MedBridge/Services/RefillCalculator.swift
-      - path: MedBridge/Utilities/Extensions.swift
+          - "PharmaHealthWidget.entitlements"
+      - path: PharmaHealth/Models
+      - path: PharmaHealth/Services/RefillCalculator.swift
+      - path: PharmaHealth/Utilities/Extensions.swift
     resources:
-      - MedBridgeWidget/Assets.xcassets
+      - PharmaHealthWidget/Assets.xcassets
     info:
-      path: MedBridgeWidget/Info.plist
+      path: PharmaHealthWidget/Info.plist
     entitlements:
-      path: MedBridgeWidget/MedBridgeWidget.entitlements
+      path: PharmaHealthWidget/PharmaHealthWidget.entitlements
     settings:
       base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.medbridge.widget
-        CODE_SIGN_ENTITLEMENTS: MedBridgeWidget/MedBridgeWidget.entitlements
-        INFOPLIST_FILE: MedBridgeWidget/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.yourdomain.pharmahealth.widget
+        CODE_SIGN_ENTITLEMENTS: PharmaHealthWidget/PharmaHealthWidget.entitlements
+        INFOPLIST_FILE: PharmaHealthWidget/Info.plist
         TARGETED_DEVICE_FAMILY: "1,2"
         SKIP_INSTALL: YES
