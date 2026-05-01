@@ -35,17 +35,26 @@ PharmaHealthWidget/
 └── PharmaHealthWidget.entitlements
 ```
 
-## Generating the Xcode project
+## Opening the project
 
-The repository ships with a `project.yml` for [XcodeGen](https://github.com/yonaskolb/XcodeGen). The generated `.xcodeproj` is git-ignored.
+The repository ships with `PharmaHealth.xcodeproj` already generated. On a Mac:
 
 ```bash
-brew install xcodegen
-xcodegen generate
+git clone <this-repo>
+cd PharmaHealth
+git checkout claude/medbridge-ios-app-mgM6X
 open PharmaHealth.xcodeproj
 ```
 
-XcodeGen is the recommended path because it keeps the project structure declarative and makes setup reproducible. If you'd rather build the project in Xcode directly, create a new SwiftUI app target named `PharmaHealth` and a Widget Extension named `PharmaHealthWidget`, then drag in the `PharmaHealth/` and `PharmaHealthWidget/` source folders, the assets, plists, and entitlements files. Add the RevenueCat Swift Package (see below) to the `PharmaHealth` target. Add the shared files (`Models/`, `Services/RefillCalculator.swift`, `Utilities/Extensions.swift`) to both targets so the widget can read the same data.
+Xcode will fetch the RevenueCat Swift Package automatically the first time you build (this needs internet on first build only).
+
+If you ever need to regenerate the project file (for example after adding new files outside Xcode), there's a Python script:
+
+```bash
+python3 scripts/generate_pbxproj.py
+```
+
+There's also a `project.yml` for [XcodeGen](https://github.com/yonaskolb/XcodeGen) that produces the same project, if you prefer that workflow.
 
 ## Required configuration
 
