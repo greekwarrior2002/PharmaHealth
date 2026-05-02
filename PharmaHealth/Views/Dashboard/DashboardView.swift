@@ -245,6 +245,7 @@ struct DashboardView: View {
     DashboardView()
         .modelContainer(for: [
             Medication.self, DoseEntry.self, SymptomLog.self,
-            Appointment.self, CaregiverProfile.self
+            Appointment.self, CaregiverProfile.self,
+            Pharmacy.self, HealthReading.self
         ], inMemory: true)
 }

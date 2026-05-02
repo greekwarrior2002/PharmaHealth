@@ -32,9 +32,9 @@ struct ContentView: View {
                         .badge(urgentCount > 0 ? urgentCount : 0)
                         .tag(1)
 
-                    SymptomLogView()
+                    HealthOverviewView()
                         .tabItem {
-                            Label("Log", systemImage: "heart.text.square")
+                            Label("Health", systemImage: "heart.text.square")
                         }
                         .tag(2)
 
@@ -60,6 +60,7 @@ struct ContentView: View {
     ContentView()
         .modelContainer(for: [
             Medication.self, DoseEntry.self, SymptomLog.self,
-            Appointment.self, CaregiverProfile.self
+            Appointment.self, CaregiverProfile.self,
+            Pharmacy.self, HealthReading.self
         ], inMemory: true)
 }

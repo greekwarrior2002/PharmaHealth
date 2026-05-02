@@ -47,5 +47,15 @@
     <string>PharmaHealth sends reminders to call your pharmacy before you run out of medication, and reminds you the day before doctor visits.</string>
     <key>NSPhotoLibraryAddUsageDescription</key>
     <string>PharmaHealth can save your appointment prep summary as a PDF.</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>PharmaHealth can read a photo of a health device reading (like a blood pressure monitor or glucometer) so you can confirm and save the value.</string>
+    <key>NSCameraUsageDescription</key>
+    <string>PharmaHealth uses the camera so you can take a photo of a health device reading. Photos are processed on-device and never uploaded.</string>
+    <key>NSLocationWhenInUseUsageDescription</key>
+    <string>PharmaHealth uses your location only when you tap "Find pharmacies near me" so it can suggest nearby pharmacies. Location is not tracked in the background.</string>
+    <key>NSHealthShareUsageDescription</key>
+    <string>PharmaHealth can show you a quick summary of recent activity, heart rate, sleep, and other health metrics from Apple Health. Data stays on your device.</string>
+    <key>NSHealthUpdateUsageDescription</key>
+    <string>PharmaHealth does not currently write data to Apple Health.</string>
 </dict>
 </plist>

@@ -17,7 +17,9 @@ struct PharmaHealthApp: App {
             DoseEntry.self,
             SymptomLog.self,
             Appointment.self,
-            CaregiverProfile.self
+            CaregiverProfile.self,
+            Pharmacy.self,
+            HealthReading.self
         ])
 
         // Try to use the App Group container so the widget can read the same store.

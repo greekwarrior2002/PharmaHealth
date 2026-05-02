@@ -20,11 +20,14 @@ struct OnboardingView: View {
             }
             .tabViewStyle(.page(indexDisplayMode: .always))
 
-            HStack {
+            HStack(spacing: 12) {
                 if page > 0 {
-                    Button("Back") { page -= 1 }
-                        .frame(minHeight: 52)
-                        .frame(maxWidth: .infinity)
+                    Button {
+                        page -= 1
+                    } label: {
+                        Text("Back")
+                    }
+                    .buttonStyle(.mbSecondary)
                 }
                 if page < 4 {
                     Button {
@@ -32,7 +35,7 @@ struct OnboardingView: View {
                     } label: {
                         Text("Continue")
                     }
-                    .mbPrimaryButton()
+                    .buttonStyle(.mbPrimary)
                     .disabled(page == 3 && patientName.trimmingCharacters(in: .whitespaces).isEmpty)
                 }
             }
@@ -86,36 +89,21 @@ struct OnboardingView: View {
             HStack(spacing: 12) {
                 Button {
                     isCaregiver = false
+                    MBHaptics.selection()
                 } label: {
                     Text("For myself")
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(isCaregiver ? Color.clear : Color.mbPrimary)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.mbPrimary, lineWidth: 1.5)
-                        )
-                        .foregroundColor(isCaregiver ? .mbPrimary : .white)
                 }
+                .buttonStyle(MBChipButtonStyle(isSelected: !isCaregiver))
+                .accessibilityAddTraits(!isCaregiver ? .isSelected : [])
+
                 Button {
                     isCaregiver = true
+                    MBHaptics.selection()
                 } label: {
                     Text("I'm a caregiver")
-                        .frame(maxWidth: .infinity, minHeight: 52)
-                        .padding()
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(isCaregiver ? Color.mbPrimary : Color.clear)
-                        )
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 12)
-                                .stroke(Color.mbPrimary, lineWidth: 1.5)
-                        )
-                        .foregroundColor(isCaregiver ? .white : .mbPrimary)
                 }
+                .buttonStyle(MBChipButtonStyle(isSelected: isCaregiver))
+                .accessibilityAddTraits(isCaregiver ? .isSelected : [])
             }
             .padding(.horizontal)
         }
@@ -144,13 +132,17 @@ struct OnboardingView: View {
             } label: {
                 Text("Allow notifications")
             }
-            .mbPrimaryButton()
+            .buttonStyle(.mbPrimary)
             .padding(.horizontal)
 
-            Button("Maybe later") {
+            Button {
                 finish()
+            } label: {
+                Text("Maybe later")
+                    .font(.body)
+                    .frame(maxWidth: .infinity, minHeight: 52)
+                    .contentShape(Rectangle())
             }
-            .frame(minHeight: 52)
         }
         .padding()
     }
