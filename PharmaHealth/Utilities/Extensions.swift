@@ -20,16 +20,20 @@ extension View {
             )
     }
 
+    /// Legacy helper – kept for back-compat with existing call sites.
+    /// Prefer applying `.buttonStyle(.mbPrimary)` to a `Button` for proper tap
+    /// areas. When applied to a `Button`'s label this still produces a fully
+    /// tappable rectangle by extending the content shape over the full bounds.
     func mbPrimaryButton() -> some View {
         self
             .font(.headline)
-            .frame(minHeight: 52)
-            .frame(maxWidth: .infinity)
+            .frame(maxWidth: .infinity, minHeight: 52)
             .foregroundColor(.white)
             .background(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: 12, style: .continuous)
                     .fill(Color.mbPrimary)
             )
+            .contentShape(RoundedRectangle(cornerRadius: 12, style: .continuous))
     }
 }
 
