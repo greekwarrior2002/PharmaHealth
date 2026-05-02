@@ -63,4 +63,5 @@ struct ContentView: View {
             Appointment.self, CaregiverProfile.self,
             Pharmacy.self, HealthReading.self
         ], inMemory: true)
+        .environmentObject(PharmacyPreferencesService())
 }

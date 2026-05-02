@@ -42,9 +42,12 @@ struct PharmaHealthApp: App {
         _ = NotificationManager.shared
     }
 
+    @StateObject private var pharmacyPreferences = PharmacyPreferencesService()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(pharmacyPreferences)
                 .task {
                     await SubscriptionManager.shared.refresh()
                     await NotificationManager.shared.refreshAuthorizationStatus()

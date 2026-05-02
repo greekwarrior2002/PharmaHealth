@@ -52,10 +52,10 @@
     <key>NSCameraUsageDescription</key>
     <string>PharmaHealth uses the camera so you can take a photo of a health device reading. Photos are processed on-device and never uploaded.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string>PharmaHealth uses your location only when you tap "Find pharmacies near me" so it can suggest nearby pharmacies. Location is not tracked in the background.</string>
+    <string>PharmaHealth uses your location to suggest nearby pharmacies and to show local weather on your home screen. Location is only requested when needed and is not tracked in the background.</string>
     <key>NSHealthShareUsageDescription</key>
     <string>PharmaHealth can show you a quick summary of recent activity, heart rate, sleep, and other health metrics from Apple Health. Data stays on your device.</string>
     <key>NSHealthUpdateUsageDescription</key>
-    <string>PharmaHealth does not currently write data to Apple Health.</string>
+    <string>PharmaHealth can save the health readings you confirm to Apple Health, so they appear in your Health app. Only readings you tap Confirm are saved. You can turn this off any time.</string>
 </dict>
 </plist>

@@ -3,6 +3,16 @@ import Foundation
 import HealthKit
 #endif
 
+/// Outcome of a write attempt back to HealthKit. Surfaced to the UI so the
+/// user gets a clear non-blocking confirmation message after they confirm a
+/// reading.
+enum HealthKitWriteResult: Equatable {
+    case saved
+    case skippedNoPermission
+    case unsupported
+    case failed(String)
+}
+
 /// Snapshot of recent HealthKit data displayed in the Health Overview.
 /// All values are optional so the view can show "—" for any metric the user
 /// hasn't granted permission for or has no data for.
@@ -56,6 +66,21 @@ final class HealthKitService: ObservableObject {
         return set
     }
 
+    /// Write types — only metrics the app can produce from a confirmed
+    /// reading (camera scan or manual entry). Steps and sleep are read-only.
+    private var writeTypes: Set<HKSampleType> {
+        var set: Set<HKSampleType> = []
+        for id: HKQuantityTypeIdentifier in [
+            .heartRate, .bodyMass, .oxygenSaturation, .bloodGlucose,
+            .bodyTemperature, .bloodPressureSystolic, .bloodPressureDiastolic
+        ] {
+            if let t = HKQuantityType.quantityType(forIdentifier: id) { set.insert(t) }
+        }
+        return set
+    }
+
+    /// Read-only authorization for the Health Overview screen. Doesn't ask
+    /// for any write permissions — keeps the first-launch prompt minimal.
     func requestAuthorization() async {
         guard let store else { return }
         do {
@@ -64,6 +89,41 @@ final class HealthKitService: ObservableObject {
         } catch {
             self.lastError = error.localizedDescription
         }
+    }
+
+    /// Asks for write permission for the metrics the app can save back.
+    /// Called only when the user enables the "Save confirmed readings to
+    /// Apple Health" toggle, or the per-confirmation override. iOS will only
+    /// surface types the user hasn't already decided about.
+    func requestWriteAuthorization() async {
+        guard let store else { return }
+        do {
+            try await store.requestAuthorization(toShare: writeTypes, read: readTypes)
+            isAuthorized = true
+        } catch {
+            self.lastError = error.localizedDescription
+        }
+    }
+
+    /// Whether the app is allowed to write the given metric. HealthKit doesn't
+    /// expose read permission status (privacy), but it does expose write
+    /// status, so this is safe to check.
+    func canWrite(_ metric: HealthMetricType) -> Bool {
+        guard let store else { return false }
+        let identifiers: [HKQuantityTypeIdentifier]
+        switch metric {
+        case .bloodPressure: identifiers = [.bloodPressureSystolic, .bloodPressureDiastolic]
+        case .bloodOxygen:   identifiers = [.oxygenSaturation]
+        case .heartRate:     identifiers = [.heartRate]
+        case .weight:        identifiers = [.bodyMass]
+        case .temperature:   identifiers = [.bodyTemperature]
+        case .bloodGlucose:  identifiers = [.bloodGlucose]
+        }
+        for id in identifiers {
+            guard let type = HKQuantityType.quantityType(forIdentifier: id) else { return false }
+            if store.authorizationStatus(for: type) != .sharingAuthorized { return false }
+        }
+        return true
     }
 
     /// Refresh all metrics. Call when the overview screen appears, not on a
@@ -90,6 +150,141 @@ final class HealthKitService: ObservableObject {
         snap.sleepHoursLastNight = try? await sleepLastNightHours(in: store)
 
         snapshot = snap
+    }
+
+    // MARK: - Writing confirmed readings
+
+    /// Persists a user-confirmed `HealthReading` into HealthKit. Never call
+    /// this with OCR drafts — only after the user has tapped Confirm.
+    /// Uses `HKMetadataKeySyncIdentifier` so re-saving the same reading does
+    /// not produce duplicate samples.
+    func saveReadingToHealthKit(_ reading: HealthReading) async -> HealthKitWriteResult {
+        guard let store else { return .unsupported }
+
+        let metric = reading.metric
+        guard canWrite(metric) else { return .skippedNoPermission }
+
+        let metadata: [String: Any] = [
+            HKMetadataKeySyncIdentifier: reading.id.uuidString,
+            HKMetadataKeySyncVersion: 1,
+            HKMetadataKeyWasUserEntered: true
+        ]
+        let date = reading.date
+
+        do {
+            switch metric {
+            case .bloodPressure:
+                guard
+                    let sysType = HKQuantityType.quantityType(forIdentifier: .bloodPressureSystolic),
+                    let diaType = HKQuantityType.quantityType(forIdentifier: .bloodPressureDiastolic),
+                    let corrType = HKObjectType.correlationType(forIdentifier: .bloodPressure),
+                    let dia = reading.secondaryValue
+                else { return .unsupported }
+                let unit = HKUnit.millimeterOfMercury()
+                let sysSample = HKQuantitySample(
+                    type: sysType,
+                    quantity: HKQuantity(unit: unit, doubleValue: reading.primaryValue),
+                    start: date, end: date, metadata: metadata
+                )
+                let diaSample = HKQuantitySample(
+                    type: diaType,
+                    quantity: HKQuantity(unit: unit, doubleValue: dia),
+                    start: date, end: date, metadata: metadata
+                )
+                let correlation = HKCorrelation(
+                    type: corrType,
+                    start: date, end: date,
+                    objects: [sysSample, diaSample],
+                    metadata: metadata
+                )
+                try await store.save(correlation)
+
+            case .bloodOxygen:
+                // App stores SpO₂ as a percent integer (e.g. 98). HealthKit
+                // expects a 0...1 fraction with HKUnit.percent().
+                let sample = try makeQuantitySample(
+                    identifier: .oxygenSaturation,
+                    unit: .percent(),
+                    value: reading.primaryValue / 100.0,
+                    date: date,
+                    metadata: metadata
+                )
+                try await store.save(sample)
+
+            case .heartRate:
+                let sample = try makeQuantitySample(
+                    identifier: .heartRate,
+                    unit: HKUnit.count().unitDivided(by: .minute()),
+                    value: reading.primaryValue,
+                    date: date,
+                    metadata: metadata
+                )
+                try await store.save(sample)
+
+            case .weight:
+                let unit: HKUnit = reading.unit.lowercased() == "lb"
+                    ? .pound()
+                    : .gramUnit(with: .kilo)
+                let sample = try makeQuantitySample(
+                    identifier: .bodyMass,
+                    unit: unit,
+                    value: reading.primaryValue,
+                    date: date,
+                    metadata: metadata
+                )
+                try await store.save(sample)
+
+            case .temperature:
+                let unit: HKUnit = reading.unit.contains("F") ? .degreeFahrenheit() : .degreeCelsius()
+                let sample = try makeQuantitySample(
+                    identifier: .bodyTemperature,
+                    unit: unit,
+                    value: reading.primaryValue,
+                    date: date,
+                    metadata: metadata
+                )
+                try await store.save(sample)
+
+            case .bloodGlucose:
+                let unit: HKUnit
+                if reading.unit.lowercased().contains("mmol") {
+                    // mmol/L → HealthKit composite unit.
+                    unit = HKUnit.moleUnit(with: .milli, molarMass: HKUnitMolarMassBloodGlucose)
+                        .unitDivided(by: .liter())
+                } else {
+                    unit = HKUnit(from: "mg/dL")
+                }
+                let sample = try makeQuantitySample(
+                    identifier: .bloodGlucose,
+                    unit: unit,
+                    value: reading.primaryValue,
+                    date: date,
+                    metadata: metadata
+                )
+                try await store.save(sample)
+            }
+            return .saved
+        } catch {
+            return .failed(error.localizedDescription)
+        }
+    }
+
+    private func makeQuantitySample(
+        identifier: HKQuantityTypeIdentifier,
+        unit: HKUnit,
+        value: Double,
+        date: Date,
+        metadata: [String: Any]
+    ) throws -> HKQuantitySample {
+        guard let type = HKQuantityType.quantityType(forIdentifier: identifier) else {
+            throw NSError(domain: "HealthKit", code: -3, userInfo: [
+                NSLocalizedDescriptionKey: "Unsupported quantity type."
+            ])
+        }
+        let quantity = HKQuantity(unit: unit, doubleValue: value)
+        return HKQuantitySample(
+            type: type, quantity: quantity, start: date, end: date, metadata: metadata
+        )
     }
 
     // MARK: - Quantity helpers
@@ -172,6 +367,9 @@ final class HealthKitService: ObservableObject {
     #else
     init() {}
     func requestAuthorization() async {}
+    func requestWriteAuthorization() async {}
+    func canWrite(_ metric: HealthMetricType) -> Bool { false }
+    func saveReadingToHealthKit(_ reading: HealthReading) async -> HealthKitWriteResult { .unsupported }
     func refresh() async {}
     #endif
 }
