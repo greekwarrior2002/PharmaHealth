@@ -14,6 +14,10 @@ final class Pharmacy {
     var longitude: Double?
     var createdAt: Date
 
+    /// Whether the user has flagged this pharmacy as a favorite. Stored with a
+    /// SwiftData-friendly default so existing rows decode unchanged.
+    var isFavorite: Bool = false
+
     init(
         id: UUID = UUID(),
         name: String,
@@ -21,7 +25,8 @@ final class Pharmacy {
         phone: String = "",
         latitude: Double? = nil,
         longitude: Double? = nil,
-        createdAt: Date = .now
+        createdAt: Date = .now,
+        isFavorite: Bool = false
     ) {
         self.id = id
         self.name = name
@@ -30,5 +35,6 @@ final class Pharmacy {
         self.latitude = latitude
         self.longitude = longitude
         self.createdAt = createdAt
+        self.isFavorite = isFavorite
     }
 }

@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import CoreLocation
 
 struct AddMedicationView: View {
     @Environment(\.modelContext) private var context
@@ -9,6 +10,7 @@ struct AddMedicationView: View {
     private var activeMedications: [Medication]
 
     @StateObject private var subscription = SubscriptionManager.shared
+    @EnvironmentObject private var pharmacyPreferences: PharmacyPreferencesService
 
     @State private var name = ""
     @State private var doseAmountText: String = "10"
@@ -27,6 +29,8 @@ struct AddMedicationView: View {
 
     @State private var showingPaywall = false
     @State private var showingPharmacyPicker = false
+    @State private var showingDefaultPrompt = false
+    @State private var didPrefillFromDefault = false
     @State private var errorMessage: String?
 
     private var nameSuggestions: [String] {
@@ -75,12 +79,67 @@ struct AddMedicationView: View {
             .sheet(isPresented: $showingPharmacyPicker) {
                 PharmacyPickerView(
                     initialName: pharmacyName,
-                    initialPhone: pharmacyPhone
+                    initialPhone: pharmacyPhone,
+                    defaultPharmacy: defaultPharmacyResult()
                 ) { pick in
                     apply(pickedPharmacy: pick)
                 }
             }
+            .confirmationDialog(
+                "Set as default pharmacy?",
+                isPresented: $showingDefaultPrompt,
+                titleVisibility: .visible
+            ) {
+                Button("Use & set as default") {
+                    if let pharmacyID, let pharmacy = fetchPharmacy(id: pharmacyID) {
+                        pharmacyPreferences.setDefault(pharmacy, in: context)
+                    }
+                }
+                Button("Use only for this medication", role: .cancel) { }
+            } message: {
+                Text("You can change this any time from Settings → My Pharmacy.")
+            }
+            .onAppear { prefillFromDefaultIfNeeded() }
         }
+    }
+
+    // MARK: - Default pharmacy helpers
+
+    private func defaultPharmacyResult() -> PharmacySearchResult? {
+        guard let pharmacy = pharmacyPreferences.defaultPharmacy(in: context) else {
+            return nil
+        }
+        let coord = pharmacy.latitude.flatMap { lat in
+            pharmacy.longitude.map { CLLocationCoordinate2D(latitude: lat, longitude: $0) }
+        }
+        return PharmacySearchResult(
+            id: pharmacy.id,
+            name: pharmacy.name,
+            address: pharmacy.address,
+            phone: pharmacy.phone,
+            coordinate: coord
+        )
+    }
+
+    private func prefillFromDefaultIfNeeded() {
+        guard !didPrefillFromDefault else { return }
+        guard pharmacyName.isEmpty,
+              pharmacyAddress.isEmpty,
+              pharmacyPhone.isEmpty,
+              pharmacyID == nil else { return }
+        guard let pharmacy = pharmacyPreferences.defaultPharmacy(in: context) else { return }
+        pharmacyName = pharmacy.name
+        pharmacyAddress = pharmacy.address
+        pharmacyPhone = pharmacy.phone
+        pharmacyID = pharmacy.id
+        didPrefillFromDefault = true
+    }
+
+    private func fetchPharmacy(id: UUID) -> Pharmacy? {
+        let descriptor = FetchDescriptor<Pharmacy>(
+            predicate: #Predicate { $0.id == id }
+        )
+        return try? context.fetch(descriptor).first
     }
 
     // MARK: - Sections
@@ -183,8 +242,19 @@ struct AddMedicationView: View {
                     Image(systemName: "cross.case.fill")
                         .foregroundColor(.mbPrimary)
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(pharmacyName.isEmpty ? "Choose pharmacy" : pharmacyName)
-                            .foregroundColor(pharmacyName.isEmpty ? .secondary : .primary)
+                        HStack(spacing: 6) {
+                            Text(pharmacyName.isEmpty ? "Choose pharmacy" : pharmacyName)
+                                .foregroundColor(pharmacyName.isEmpty ? .secondary : .primary)
+                            if pharmacyPreferences.isDefault(pharmacyID) {
+                                Text("Default")
+                                    .font(.caption2.weight(.semibold))
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color.mbPrimary.opacity(0.15)))
+                                    .foregroundColor(.mbPrimary)
+                                    .accessibilityLabel("Default pharmacy")
+                            }
+                        }
                         if !pharmacyAddress.isEmpty {
                             Text(pharmacyAddress)
                                 .font(.caption)
@@ -242,6 +312,12 @@ struct AddMedicationView: View {
             pharmacyID = newPharmacy.id
         }
         try? context.save()
+
+        // If this pharmacy isn't already the default, offer to set it as one.
+        // Skip the prompt if it already matches — silent no-op feels best.
+        if let id = pharmacyID, pharmacyPreferences.defaultPharmacyID != id {
+            showingDefaultPrompt = true
+        }
     }
 
     private func save() {

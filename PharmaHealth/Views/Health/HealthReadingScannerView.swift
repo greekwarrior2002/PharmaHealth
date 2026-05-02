@@ -24,6 +24,9 @@ struct HealthReadingScannerView: View {
     @State private var ocrError: String?
     @State private var parsed: [ParsedHealthReading] = []
     @State private var showingConfirmation = false
+    @State private var saveStatusMessage: String?
+
+    @StateObject private var healthKit = HealthKitService()
 
     private let ocr = VisionOCRService()
     private let parser: HealthReadingParser = LocalRegexHealthReadingParser()
@@ -99,11 +102,11 @@ struct HealthReadingScannerView: View {
                         image: image,
                         candidates: parsed,
                         metricHint: metricHint,
-                        onSave: { reading in
+                        onSave: { reading, alsoSaveToHealth in
                             context.insert(reading)
                             try? context.save()
                             MBHaptics.success()
-                            dismiss()
+                            handlePostSave(reading: reading, alsoSaveToHealth: alsoSaveToHealth)
                         },
                         onRetake: {
                             self.image = nil
@@ -111,6 +114,44 @@ struct HealthReadingScannerView: View {
                         }
                     )
                 }
+            }
+            .alert(
+                "Reading saved",
+                isPresented: Binding(
+                    get: { saveStatusMessage != nil },
+                    set: { if !$0 { saveStatusMessage = nil } }
+                )
+            ) {
+                Button("OK") {
+                    saveStatusMessage = nil
+                    dismiss()
+                }
+            } message: {
+                Text(saveStatusMessage ?? "")
+            }
+        }
+    }
+
+    private func handlePostSave(reading: HealthReading, alsoSaveToHealth: Bool) {
+        guard alsoSaveToHealth else {
+            saveStatusMessage = "Saved to PharmaHealth."
+            return
+        }
+        Task {
+            // Make sure we've requested write permission at least once.
+            if !healthKit.canWrite(reading.metric) {
+                await healthKit.requestWriteAuthorization()
+            }
+            let result = await healthKit.saveReadingToHealthKit(reading)
+            switch result {
+            case .saved:
+                saveStatusMessage = "Saved to PharmaHealth and Apple Health."
+            case .skippedNoPermission:
+                saveStatusMessage = "Saved to PharmaHealth. Apple Health permission is missing — you can grant it in iOS Settings → Health → Data Access & Devices."
+            case .unsupported:
+                saveStatusMessage = "Saved to PharmaHealth. Apple Health isn't available on this device."
+            case .failed(let message):
+                saveStatusMessage = "Saved to PharmaHealth. Apple Health write failed: \(message)"
             }
         }
     }

@@ -1,21 +1,27 @@
 import SwiftUI
 import SwiftData
 import UserNotifications
+import CoreLocation
 
 struct SettingsView: View {
     @Environment(\.modelContext) private var context
     @Query private var profiles: [CaregiverProfile]
     @StateObject private var subscription = SubscriptionManager.shared
     @StateObject private var notifications = NotificationManager.shared
+    @EnvironmentObject private var pharmacyPreferences: PharmacyPreferencesService
 
     @AppStorage("defaultDoseReminderHour") private var defaultDoseReminderHour: Int = 8
     @AppStorage("defaultDoseReminderMinute") private var defaultDoseReminderMinute: Int = 0
     @AppStorage("refillLeadTimeDays") private var refillLeadTimeDays: Int = 5
     @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = true
+    @AppStorage("saveConfirmedReadingsToHealthKit") private var saveToHealth: Bool = false
+
+    @StateObject private var healthKit = HealthKitService()
 
     @State private var patientName: String = ""
     @State private var caregiverName: String = ""
     @State private var showingPaywall = false
+    @State private var showingPharmacyPicker = false
 
     private var profile: CaregiverProfile? {
         profiles.first
@@ -57,6 +63,49 @@ struct SettingsView: View {
                     }
                 }
 
+                Section {
+                    if let pharmacy = pharmacyPreferences.defaultPharmacy(in: context) {
+                        VStack(alignment: .leading, spacing: 4) {
+                            HStack(spacing: 6) {
+                                Text(pharmacy.name)
+                                    .font(.body.weight(.semibold))
+                                Text("Default")
+                                    .font(.caption2.weight(.semibold))
+                                    .padding(.horizontal, 6)
+                                    .padding(.vertical, 2)
+                                    .background(Capsule().fill(Color.mbPrimary.opacity(0.15)))
+                                    .foregroundColor(.mbPrimary)
+                            }
+                            if !pharmacy.address.isEmpty {
+                                Text(pharmacy.address)
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        .accessibilityElement(children: .combine)
+
+                        Button("Change default pharmacy") {
+                            showingPharmacyPicker = true
+                        }
+                        Button(role: .destructive) {
+                            pharmacyPreferences.clearDefault(in: context)
+                        } label: {
+                            Text("Remove default pharmacy")
+                        }
+                    } else {
+                        Button {
+                            showingPharmacyPicker = true
+                        } label: {
+                            Label("Choose default pharmacy", systemImage: "star")
+                        }
+                    }
+                } header: {
+                    Text("My Pharmacy")
+                } footer: {
+                    Text("Your default pharmacy is suggested when you add a new medication. You can change it for each medication.")
+                        .font(.footnote)
+                }
+
                 Section("Reminders") {
                     DatePicker(
                         "Daily dose reminder",
@@ -68,6 +117,20 @@ struct SettingsView: View {
                         Text("7 days before").tag(7)
                         Text("10 days before").tag(10)
                     }
+                }
+
+                Section {
+                    Toggle("Save confirmed readings to Apple Health", isOn: $saveToHealth)
+                        .onChange(of: saveToHealth) { _, newValue in
+                            if newValue {
+                                Task { await healthKit.requestWriteAuthorization() }
+                            }
+                        }
+                } header: {
+                    Text("Apple Health")
+                } footer: {
+                    Text("When on, readings you tap Confirm are also written to Apple Health. PharmaHealth never writes unconfirmed values. You can revoke access any time in iOS Settings → Health → Data Access & Devices.")
+                        .font(.footnote)
                 }
 
                 Section("Notifications") {
@@ -127,6 +190,13 @@ struct SettingsView: View {
             .sheet(isPresented: $showingPaywall) {
                 PaywallView()
             }
+            .sheet(isPresented: $showingPharmacyPicker) {
+                PharmacyPickerView(
+                    defaultPharmacy: nil
+                ) { pick in
+                    upsertAndSetDefault(pick)
+                }
+            }
             .task {
                 await notifications.refreshAuthorizationStatus()
                 if let profile = profile {
@@ -150,6 +220,28 @@ struct SettingsView: View {
         let v = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "1.0"
         let b = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "1"
         return "\(v) (\(b))"
+    }
+
+    private func upsertAndSetDefault(_ pick: PharmacySearchResult) {
+        let descriptor = FetchDescriptor<Pharmacy>()
+        let pharmacy: Pharmacy
+        if let existing = (try? context.fetch(descriptor))?.first(where: {
+            $0.name == pick.name && $0.address == pick.address
+        }) {
+            if !pick.phone.isEmpty { existing.phone = pick.phone }
+            pharmacy = existing
+        } else {
+            let newPharmacy = Pharmacy(
+                name: pick.name,
+                address: pick.address,
+                phone: pick.phone,
+                latitude: pick.coordinate?.latitude,
+                longitude: pick.coordinate?.longitude
+            )
+            context.insert(newPharmacy)
+            pharmacy = newPharmacy
+        }
+        pharmacyPreferences.setDefault(pharmacy, in: context)
     }
 
     private func saveProfile() {

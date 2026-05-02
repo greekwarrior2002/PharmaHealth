@@ -22,51 +22,57 @@
 		BBBB0000000000000000000D /* HealthReadingParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000000D /* HealthReadingParser.swift */; };
 		BBBB0000000000000000000E /* HealthReadingValidator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000000E /* HealthReadingValidator.swift */; };
 		BBBB0000000000000000000F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000000F /* NotificationManager.swift */; };
-		BBBB00000000000000000010 /* PharmacySearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000010 /* PharmacySearchService.swift */; };
-		BBBB00000000000000000011 /* RefillCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000011 /* RefillCalculator.swift */; };
-		BBBB00000000000000000012 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000012 /* SubscriptionManager.swift */; };
-		BBBB00000000000000000013 /* VisionOCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000013 /* VisionOCRService.swift */; };
-		BBBB00000000000000000014 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000014 /* ButtonStyles.swift */; };
-		BBBB00000000000000000015 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000015 /* Extensions.swift */; };
-		BBBB00000000000000000016 /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000016 /* PDFExporter.swift */; };
-		BBBB00000000000000000017 /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000017 /* AppointmentViewModel.swift */; };
-		BBBB00000000000000000018 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000018 /* DashboardViewModel.swift */; };
-		BBBB00000000000000000019 /* MedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000019 /* MedicationViewModel.swift */; };
-		BBBB0000000000000000001A /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001A /* AddAppointmentView.swift */; };
-		BBBB0000000000000000001B /* AppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001B /* AppointmentDetailView.swift */; };
-		BBBB0000000000000000001C /* AppointmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001C /* AppointmentListView.swift */; };
-		BBBB0000000000000000001D /* PrepSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001D /* PrepSummaryView.swift */; };
-		BBBB0000000000000000001E /* QuantityStepperField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001E /* QuantityStepperField.swift */; };
-		BBBB0000000000000000001F /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001F /* DashboardView.swift */; };
-		BBBB00000000000000000020 /* MedicationStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000020 /* MedicationStatusCard.swift */; };
-		BBBB00000000000000000021 /* DoseEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000021 /* DoseEntryRow.swift */; };
-		BBBB00000000000000000022 /* DoseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000022 /* DoseLogView.swift */; };
-		BBBB00000000000000000023 /* HealthOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000023 /* HealthOverviewView.swift */; };
-		BBBB00000000000000000024 /* HealthReadingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000024 /* HealthReadingConfirmationView.swift */; };
-		BBBB00000000000000000025 /* HealthReadingScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000025 /* HealthReadingScannerView.swift */; };
-		BBBB00000000000000000026 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000026 /* ImagePicker.swift */; };
-		BBBB00000000000000000027 /* AddMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000027 /* AddMedicationView.swift */; };
-		BBBB00000000000000000028 /* EditMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000028 /* EditMedicationView.swift */; };
-		BBBB00000000000000000029 /* MedicationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000029 /* MedicationDetailView.swift */; };
-		BBBB0000000000000000002A /* MedicationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002A /* MedicationListView.swift */; };
-		BBBB0000000000000000002B /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002B /* OnboardingView.swift */; };
-		BBBB0000000000000000002C /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002C /* PaywallView.swift */; };
-		BBBB0000000000000000002D /* PharmacyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002D /* PharmacyPickerView.swift */; };
-		BBBB0000000000000000002E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002E /* SettingsView.swift */; };
-		BBBB0000000000000000002F /* AddSymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002F /* AddSymptomView.swift */; };
-		BBBB00000000000000000030 /* SymptomLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000030 /* SymptomLogView.swift */; };
-		CCCC00000000000000000001 /* PharmaHealthWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000031 /* PharmaHealthWidget.swift */; };
+		BBBB00000000000000000010 /* PharmacyPreferencesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000010 /* PharmacyPreferencesService.swift */; };
+		BBBB00000000000000000011 /* PharmacySearchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000011 /* PharmacySearchService.swift */; };
+		BBBB00000000000000000012 /* RefillCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000012 /* RefillCalculator.swift */; };
+		BBBB00000000000000000013 /* SubscriptionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000013 /* SubscriptionManager.swift */; };
+		BBBB00000000000000000014 /* VisionOCRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000014 /* VisionOCRService.swift */; };
+		BBBB00000000000000000015 /* MockWeatherProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000015 /* MockWeatherProvider.swift */; };
+		BBBB00000000000000000016 /* WeatherKitWeatherProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000016 /* WeatherKitWeatherProvider.swift */; };
+		BBBB00000000000000000017 /* WeatherService.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000017 /* WeatherService.swift */; };
+		BBBB00000000000000000018 /* ButtonStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000018 /* ButtonStyles.swift */; };
+		BBBB00000000000000000019 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000019 /* Extensions.swift */; };
+		BBBB0000000000000000001A /* PDFExporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001A /* PDFExporter.swift */; };
+		BBBB0000000000000000001B /* AppointmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001B /* AppointmentViewModel.swift */; };
+		BBBB0000000000000000001C /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001C /* DashboardViewModel.swift */; };
+		BBBB0000000000000000001D /* MedicationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001D /* MedicationViewModel.swift */; };
+		BBBB0000000000000000001E /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001E /* WeatherViewModel.swift */; };
+		BBBB0000000000000000001F /* AddAppointmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000001F /* AddAppointmentView.swift */; };
+		BBBB00000000000000000020 /* AppointmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000020 /* AppointmentDetailView.swift */; };
+		BBBB00000000000000000021 /* AppointmentListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000021 /* AppointmentListView.swift */; };
+		BBBB00000000000000000022 /* PrepSummaryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000022 /* PrepSummaryView.swift */; };
+		BBBB00000000000000000023 /* QuantityStepperField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000023 /* QuantityStepperField.swift */; };
+		BBBB00000000000000000024 /* WeatherCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000024 /* WeatherCard.swift */; };
+		BBBB00000000000000000025 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000025 /* DashboardView.swift */; };
+		BBBB00000000000000000026 /* MedicationStatusCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000026 /* MedicationStatusCard.swift */; };
+		BBBB00000000000000000027 /* DoseEntryRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000027 /* DoseEntryRow.swift */; };
+		BBBB00000000000000000028 /* DoseLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000028 /* DoseLogView.swift */; };
+		BBBB00000000000000000029 /* HealthOverviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000029 /* HealthOverviewView.swift */; };
+		BBBB0000000000000000002A /* HealthReadingConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002A /* HealthReadingConfirmationView.swift */; };
+		BBBB0000000000000000002B /* HealthReadingScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002B /* HealthReadingScannerView.swift */; };
+		BBBB0000000000000000002C /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002C /* ImagePicker.swift */; };
+		BBBB0000000000000000002D /* AddMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002D /* AddMedicationView.swift */; };
+		BBBB0000000000000000002E /* EditMedicationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002E /* EditMedicationView.swift */; };
+		BBBB0000000000000000002F /* MedicationDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000002F /* MedicationDetailView.swift */; };
+		BBBB00000000000000000030 /* MedicationListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000030 /* MedicationListView.swift */; };
+		BBBB00000000000000000031 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000031 /* OnboardingView.swift */; };
+		BBBB00000000000000000032 /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000032 /* PaywallView.swift */; };
+		BBBB00000000000000000033 /* PharmacyPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000033 /* PharmacyPickerView.swift */; };
+		BBBB00000000000000000034 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000034 /* SettingsView.swift */; };
+		BBBB00000000000000000035 /* AddSymptomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000035 /* AddSymptomView.swift */; };
+		BBBB00000000000000000036 /* SymptomLogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000036 /* SymptomLogView.swift */; };
+		CCCC00000000000000000001 /* PharmaHealthWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000037 /* PharmaHealthWidget.swift */; };
 		CCCC00000000000000000002 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000002 /* Appointment.swift */; };
 		CCCC00000000000000000003 /* CaregiverProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000003 /* CaregiverProfile.swift */; };
 		CCCC00000000000000000004 /* DoseEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000004 /* DoseEntry.swift */; };
 		CCCC00000000000000000005 /* Medication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000006 /* Medication.swift */; };
 		CCCC00000000000000000006 /* SymptomLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000008 /* SymptomLog.swift */; };
-		CCCC00000000000000000007 /* RefillCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000011 /* RefillCalculator.swift */; };
-		CCCC00000000000000000008 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000015 /* Extensions.swift */; };
-		BBBB00000000000000000031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000032 /* Assets.xcassets */; };
-		CCCC00000000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000033 /* Assets.xcassets */; };
-		BBBB00000000000000000032 /* PharmaHealthWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000039 /* PharmaHealthWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		BBBB00000000000000000033 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 66660000000000000000002A /* RevenueCat */; };
+		CCCC00000000000000000007 /* RefillCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000012 /* RefillCalculator.swift */; };
+		CCCC00000000000000000008 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000019 /* Extensions.swift */; };
+		BBBB00000000000000000037 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000038 /* Assets.xcassets */; };
+		CCCC00000000000000000009 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA00000000000000000039 /* Assets.xcassets */; };
+		BBBB00000000000000000038 /* PharmaHealthWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = AAAA0000000000000000003F /* PharmaHealthWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		BBBB00000000000000000039 /* RevenueCat in Frameworks */ = {isa = PBXBuildFile; productRef = 66660000000000000000002A /* RevenueCat */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,7 +92,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				BBBB00000000000000000032 /* PharmaHealthWidget.appex in Embed Foundation Extensions */,
+				BBBB00000000000000000038 /* PharmaHealthWidget.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -109,48 +115,54 @@
 		AAAA0000000000000000000D /* HealthReadingParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingParser.swift; sourceTree = "<group>"; };
 		AAAA0000000000000000000E /* HealthReadingValidator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingValidator.swift; sourceTree = "<group>"; };
 		AAAA0000000000000000000F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000010 /* PharmacySearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacySearchService.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000011 /* RefillCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefillCalculator.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000012 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000013 /* VisionOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionOCRService.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000014 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000015 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000016 /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000017 /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000018 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000019 /* MedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationViewModel.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001A /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001B /* AppointmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001C /* AppointmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001D /* PrepSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepSummaryView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001E /* QuantityStepperField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityStepperField.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000001F /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000020 /* MedicationStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStatusCard.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000021 /* DoseEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEntryRow.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000022 /* DoseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLogView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000023 /* HealthOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthOverviewView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000024 /* HealthReadingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingConfirmationView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000025 /* HealthReadingScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingScannerView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000026 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000027 /* AddMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000028 /* EditMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMedicationView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000029 /* MedicationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDetailView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002A /* MedicationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationListView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002B /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002C /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002D /* PharmacyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyPickerView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		AAAA0000000000000000002F /* AddSymptomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymptomView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000030 /* SymptomLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomLogView.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000031 /* PharmaHealthWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmaHealthWidget.swift; sourceTree = "<group>"; };
-		AAAA00000000000000000032 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AAAA00000000000000000033 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		AAAA00000000000000000034 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAAA00000000000000000035 /* PharmaHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PharmaHealth.entitlements; sourceTree = "<group>"; };
-		AAAA00000000000000000036 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AAAA00000000000000000037 /* PharmaHealthWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PharmaHealthWidget.entitlements; sourceTree = "<group>"; };
-		AAAA00000000000000000038 /* PharmaHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PharmaHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAAA00000000000000000039 /* PharmaHealthWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PharmaHealthWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAA00000000000000000010 /* PharmacyPreferencesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyPreferencesService.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000011 /* PharmacySearchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacySearchService.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000012 /* RefillCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefillCalculator.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000013 /* SubscriptionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionManager.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000014 /* VisionOCRService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionOCRService.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000015 /* MockWeatherProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWeatherProvider.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000016 /* WeatherKitWeatherProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherKitWeatherProvider.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000017 /* WeatherService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherService.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000018 /* ButtonStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyles.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000019 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001A /* PDFExporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFExporter.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001B /* AppointmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentViewModel.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001C /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001D /* MedicationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationViewModel.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001E /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000001F /* AddAppointmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddAppointmentView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000020 /* AppointmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000021 /* AppointmentListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000022 /* PrepSummaryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepSummaryView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000023 /* QuantityStepperField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityStepperField.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000024 /* WeatherCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCard.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000025 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000026 /* MedicationStatusCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationStatusCard.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000027 /* DoseEntryRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseEntryRow.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000028 /* DoseLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoseLogView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000029 /* HealthOverviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthOverviewView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002A /* HealthReadingConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingConfirmationView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002B /* HealthReadingScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthReadingScannerView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002C /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002D /* AddMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMedicationView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002E /* EditMedicationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditMedicationView.swift; sourceTree = "<group>"; };
+		AAAA0000000000000000002F /* MedicationDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationDetailView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000030 /* MedicationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MedicationListView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000031 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000032 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000033 /* PharmacyPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmacyPickerView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000034 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000035 /* AddSymptomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSymptomView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000036 /* SymptomLogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SymptomLogView.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000037 /* PharmaHealthWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PharmaHealthWidget.swift; sourceTree = "<group>"; };
+		AAAA00000000000000000038 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAAA00000000000000000039 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAAA0000000000000000003A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAA0000000000000000003B /* PharmaHealth.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PharmaHealth.entitlements; sourceTree = "<group>"; };
+		AAAA0000000000000000003C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAA0000000000000000003D /* PharmaHealthWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PharmaHealthWidget.entitlements; sourceTree = "<group>"; };
+		AAAA0000000000000000003E /* PharmaHealth.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PharmaHealth.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAA0000000000000000003F /* PharmaHealthWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PharmaHealthWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBBB00000000000000000033 /* RevenueCat in Frameworks */,
+				BBBB00000000000000000039 /* RevenueCat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,157 +198,179 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		DDDD00000000000000000006 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000015 /* MockWeatherProvider.swift */,
+				AAAA00000000000000000016 /* WeatherKitWeatherProvider.swift */,
+				AAAA00000000000000000017 /* WeatherService.swift */,
+			);
+			path = Weather;
+			sourceTree = "<group>";
+		};
 		DDDD00000000000000000005 = {
 			isa = PBXGroup;
 			children = (
+				DDDD00000000000000000006 /* Weather */,
 				AAAA0000000000000000000A /* AIAssistantService.swift */,
 				AAAA0000000000000000000B /* AppointmentPrepGenerator.swift */,
 				AAAA0000000000000000000C /* HealthKitService.swift */,
 				AAAA0000000000000000000D /* HealthReadingParser.swift */,
 				AAAA0000000000000000000E /* HealthReadingValidator.swift */,
 				AAAA0000000000000000000F /* NotificationManager.swift */,
-				AAAA00000000000000000010 /* PharmacySearchService.swift */,
-				AAAA00000000000000000011 /* RefillCalculator.swift */,
-				AAAA00000000000000000012 /* SubscriptionManager.swift */,
-				AAAA00000000000000000013 /* VisionOCRService.swift */,
+				AAAA00000000000000000010 /* PharmacyPreferencesService.swift */,
+				AAAA00000000000000000011 /* PharmacySearchService.swift */,
+				AAAA00000000000000000012 /* RefillCalculator.swift */,
+				AAAA00000000000000000013 /* SubscriptionManager.swift */,
+				AAAA00000000000000000014 /* VisionOCRService.swift */,
 			);
 			path = Services;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000006 = {
-			isa = PBXGroup;
-			children = (
-				AAAA00000000000000000014 /* ButtonStyles.swift */,
-				AAAA00000000000000000015 /* Extensions.swift */,
-				AAAA00000000000000000016 /* PDFExporter.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		DDDD00000000000000000007 = {
 			isa = PBXGroup;
 			children = (
-				AAAA00000000000000000017 /* AppointmentViewModel.swift */,
-				AAAA00000000000000000018 /* DashboardViewModel.swift */,
-				AAAA00000000000000000019 /* MedicationViewModel.swift */,
+				AAAA00000000000000000018 /* ButtonStyles.swift */,
+				AAAA00000000000000000019 /* Extensions.swift */,
+				AAAA0000000000000000001A /* PDFExporter.swift */,
 			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000009 = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000001A /* AddAppointmentView.swift */,
-				AAAA0000000000000000001B /* AppointmentDetailView.swift */,
-				AAAA0000000000000000001C /* AppointmentListView.swift */,
-				AAAA0000000000000000001D /* PrepSummaryView.swift */,
-			);
-			path = Appointments;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000A = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000001E /* QuantityStepperField.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000B = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000001F /* DashboardView.swift */,
-				AAAA00000000000000000020 /* MedicationStatusCard.swift */,
-			);
-			path = Dashboard;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000C = {
-			isa = PBXGroup;
-			children = (
-				AAAA00000000000000000021 /* DoseEntryRow.swift */,
-				AAAA00000000000000000022 /* DoseLogView.swift */,
-			);
-			path = DoseLog;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000D = {
-			isa = PBXGroup;
-			children = (
-				AAAA00000000000000000023 /* HealthOverviewView.swift */,
-				AAAA00000000000000000024 /* HealthReadingConfirmationView.swift */,
-				AAAA00000000000000000025 /* HealthReadingScannerView.swift */,
-				AAAA00000000000000000026 /* ImagePicker.swift */,
-			);
-			path = Health;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000E = {
-			isa = PBXGroup;
-			children = (
-				AAAA00000000000000000027 /* AddMedicationView.swift */,
-				AAAA00000000000000000028 /* EditMedicationView.swift */,
-				AAAA00000000000000000029 /* MedicationDetailView.swift */,
-				AAAA0000000000000000002A /* MedicationListView.swift */,
-			);
-			path = Medications;
-			sourceTree = "<group>";
-		};
-		DDDD0000000000000000000F = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000002B /* OnboardingView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000010 = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000002C /* PaywallView.swift */,
-			);
-			path = Paywall;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000011 = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000002D /* PharmacyPickerView.swift */,
-			);
-			path = Pharmacy;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000012 = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000002E /* SettingsView.swift */,
-			);
-			path = Settings;
-			sourceTree = "<group>";
-		};
-		DDDD00000000000000000013 = {
-			isa = PBXGroup;
-			children = (
-				AAAA0000000000000000002F /* AddSymptomView.swift */,
-				AAAA00000000000000000030 /* SymptomLogView.swift */,
-			);
-			path = Symptoms;
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 		DDDD00000000000000000008 = {
 			isa = PBXGroup;
 			children = (
-				DDDD00000000000000000009 /* Appointments */,
-				DDDD0000000000000000000A /* Components */,
-				DDDD0000000000000000000B /* Dashboard */,
-				DDDD0000000000000000000C /* DoseLog */,
-				DDDD0000000000000000000D /* Health */,
-				DDDD0000000000000000000E /* Medications */,
-				DDDD0000000000000000000F /* Onboarding */,
-				DDDD00000000000000000010 /* Paywall */,
-				DDDD00000000000000000011 /* Pharmacy */,
-				DDDD00000000000000000012 /* Settings */,
-				DDDD00000000000000000013 /* Symptoms */,
+				AAAA0000000000000000001B /* AppointmentViewModel.swift */,
+				AAAA0000000000000000001C /* DashboardViewModel.swift */,
+				AAAA0000000000000000001D /* MedicationViewModel.swift */,
+				AAAA0000000000000000001E /* WeatherViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000A = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000001F /* AddAppointmentView.swift */,
+				AAAA00000000000000000020 /* AppointmentDetailView.swift */,
+				AAAA00000000000000000021 /* AppointmentListView.swift */,
+				AAAA00000000000000000022 /* PrepSummaryView.swift */,
+			);
+			path = Appointments;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000B = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000023 /* QuantityStepperField.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000D = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000024 /* WeatherCard.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000C = {
+			isa = PBXGroup;
+			children = (
+				DDDD0000000000000000000D /* Components */,
+				AAAA00000000000000000025 /* DashboardView.swift */,
+				AAAA00000000000000000026 /* MedicationStatusCard.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000E = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000027 /* DoseEntryRow.swift */,
+				AAAA00000000000000000028 /* DoseLogView.swift */,
+			);
+			path = DoseLog;
+			sourceTree = "<group>";
+		};
+		DDDD0000000000000000000F = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000029 /* HealthOverviewView.swift */,
+				AAAA0000000000000000002A /* HealthReadingConfirmationView.swift */,
+				AAAA0000000000000000002B /* HealthReadingScannerView.swift */,
+				AAAA0000000000000000002C /* ImagePicker.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000010 = {
+			isa = PBXGroup;
+			children = (
+				AAAA0000000000000000002D /* AddMedicationView.swift */,
+				AAAA0000000000000000002E /* EditMedicationView.swift */,
+				AAAA0000000000000000002F /* MedicationDetailView.swift */,
+				AAAA00000000000000000030 /* MedicationListView.swift */,
+			);
+			path = Medications;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000011 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000031 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000012 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000032 /* PaywallView.swift */,
+			);
+			path = Paywall;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000013 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000033 /* PharmacyPickerView.swift */,
+			);
+			path = Pharmacy;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000014 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000034 /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000015 = {
+			isa = PBXGroup;
+			children = (
+				AAAA00000000000000000035 /* AddSymptomView.swift */,
+				AAAA00000000000000000036 /* SymptomLogView.swift */,
+			);
+			path = Symptoms;
+			sourceTree = "<group>";
+		};
+		DDDD00000000000000000009 = {
+			isa = PBXGroup;
+			children = (
+				DDDD0000000000000000000A /* Appointments */,
+				DDDD0000000000000000000B /* Components */,
+				DDDD0000000000000000000C /* Dashboard */,
+				DDDD0000000000000000000E /* DoseLog */,
+				DDDD0000000000000000000F /* Health */,
+				DDDD00000000000000000010 /* Medications */,
+				DDDD00000000000000000011 /* Onboarding */,
+				DDDD00000000000000000012 /* Paywall */,
+				DDDD00000000000000000013 /* Pharmacy */,
+				DDDD00000000000000000014 /* Settings */,
+				DDDD00000000000000000015 /* Symptoms */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -346,25 +380,25 @@
 			children = (
 				DDDD00000000000000000004 /* Models */,
 				DDDD00000000000000000005 /* Services */,
-				DDDD00000000000000000006 /* Utilities */,
-				DDDD00000000000000000007 /* ViewModels */,
-				DDDD00000000000000000008 /* Views */,
-				AAAA00000000000000000032 /* Assets.xcassets */,
+				DDDD00000000000000000007 /* Utilities */,
+				DDDD00000000000000000008 /* ViewModels */,
+				DDDD00000000000000000009 /* Views */,
+				AAAA00000000000000000038 /* Assets.xcassets */,
 				AAAA00000000000000000001 /* ContentView.swift */,
-				AAAA00000000000000000034 /* Info.plist */,
-				AAAA00000000000000000035 /* PharmaHealth.entitlements */,
+				AAAA0000000000000000003A /* Info.plist */,
+				AAAA0000000000000000003B /* PharmaHealth.entitlements */,
 				AAAA00000000000000000009 /* PharmaHealthApp.swift */,
 			);
 			path = PharmaHealth;
 			sourceTree = "<group>";
 		};
-		DDDD00000000000000000014 = {
+		DDDD00000000000000000016 = {
 			isa = PBXGroup;
 			children = (
-				AAAA00000000000000000033 /* Assets.xcassets */,
-				AAAA00000000000000000036 /* Info.plist */,
-				AAAA00000000000000000037 /* PharmaHealthWidget.entitlements */,
-				AAAA00000000000000000031 /* PharmaHealthWidget.swift */,
+				AAAA00000000000000000039 /* Assets.xcassets */,
+				AAAA0000000000000000003C /* Info.plist */,
+				AAAA0000000000000000003D /* PharmaHealthWidget.entitlements */,
+				AAAA00000000000000000037 /* PharmaHealthWidget.swift */,
 			);
 			path = PharmaHealthWidget;
 			sourceTree = "<group>";
@@ -372,8 +406,8 @@
 		DDDD00000000000000000001 = {
 			isa = PBXGroup;
 			children = (
-				AAAA00000000000000000038 /* PharmaHealth.app */,
-				AAAA00000000000000000039 /* PharmaHealthWidget.appex */,
+				AAAA0000000000000000003E /* PharmaHealth.app */,
+				AAAA0000000000000000003F /* PharmaHealthWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -382,7 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				DDDD00000000000000000003 /* PharmaHealth */,
-				DDDD00000000000000000014 /* PharmaHealthWidget */,
+				DDDD00000000000000000016 /* PharmaHealthWidget */,
 				DDDD00000000000000000001 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -409,7 +443,7 @@
 				66660000000000000000002A /* RevenueCat */,
 			);
 			productName = PharmaHealth;
-			productReference = AAAA00000000000000000038 /* PharmaHealth.app */;
+			productReference = AAAA0000000000000000003E /* PharmaHealth.app */;
 			productType = "com.apple.product-type.application";
 		};
 		EEEE00000000000000000002 /* PharmaHealthWidget */ = {
@@ -426,7 +460,7 @@
 			);
 			name = PharmaHealthWidget;
 			productName = PharmaHealthWidget;
-			productReference = AAAA00000000000000000039 /* PharmaHealthWidget.appex */;
+			productReference = AAAA0000000000000000003F /* PharmaHealthWidget.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
@@ -474,7 +508,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BBBB00000000000000000031 /* Assets.xcassets in Resources */,
+				BBBB00000000000000000037 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -508,39 +542,45 @@
 				BBBB0000000000000000000D /* HealthReadingParser.swift in Sources */,
 				BBBB0000000000000000000E /* HealthReadingValidator.swift in Sources */,
 				BBBB0000000000000000000F /* NotificationManager.swift in Sources */,
-				BBBB00000000000000000010 /* PharmacySearchService.swift in Sources */,
-				BBBB00000000000000000011 /* RefillCalculator.swift in Sources */,
-				BBBB00000000000000000012 /* SubscriptionManager.swift in Sources */,
-				BBBB00000000000000000013 /* VisionOCRService.swift in Sources */,
-				BBBB00000000000000000014 /* ButtonStyles.swift in Sources */,
-				BBBB00000000000000000015 /* Extensions.swift in Sources */,
-				BBBB00000000000000000016 /* PDFExporter.swift in Sources */,
-				BBBB00000000000000000017 /* AppointmentViewModel.swift in Sources */,
-				BBBB00000000000000000018 /* DashboardViewModel.swift in Sources */,
-				BBBB00000000000000000019 /* MedicationViewModel.swift in Sources */,
-				BBBB0000000000000000001A /* AddAppointmentView.swift in Sources */,
-				BBBB0000000000000000001B /* AppointmentDetailView.swift in Sources */,
-				BBBB0000000000000000001C /* AppointmentListView.swift in Sources */,
-				BBBB0000000000000000001D /* PrepSummaryView.swift in Sources */,
-				BBBB0000000000000000001E /* QuantityStepperField.swift in Sources */,
-				BBBB0000000000000000001F /* DashboardView.swift in Sources */,
-				BBBB00000000000000000020 /* MedicationStatusCard.swift in Sources */,
-				BBBB00000000000000000021 /* DoseEntryRow.swift in Sources */,
-				BBBB00000000000000000022 /* DoseLogView.swift in Sources */,
-				BBBB00000000000000000023 /* HealthOverviewView.swift in Sources */,
-				BBBB00000000000000000024 /* HealthReadingConfirmationView.swift in Sources */,
-				BBBB00000000000000000025 /* HealthReadingScannerView.swift in Sources */,
-				BBBB00000000000000000026 /* ImagePicker.swift in Sources */,
-				BBBB00000000000000000027 /* AddMedicationView.swift in Sources */,
-				BBBB00000000000000000028 /* EditMedicationView.swift in Sources */,
-				BBBB00000000000000000029 /* MedicationDetailView.swift in Sources */,
-				BBBB0000000000000000002A /* MedicationListView.swift in Sources */,
-				BBBB0000000000000000002B /* OnboardingView.swift in Sources */,
-				BBBB0000000000000000002C /* PaywallView.swift in Sources */,
-				BBBB0000000000000000002D /* PharmacyPickerView.swift in Sources */,
-				BBBB0000000000000000002E /* SettingsView.swift in Sources */,
-				BBBB0000000000000000002F /* AddSymptomView.swift in Sources */,
-				BBBB00000000000000000030 /* SymptomLogView.swift in Sources */,
+				BBBB00000000000000000010 /* PharmacyPreferencesService.swift in Sources */,
+				BBBB00000000000000000011 /* PharmacySearchService.swift in Sources */,
+				BBBB00000000000000000012 /* RefillCalculator.swift in Sources */,
+				BBBB00000000000000000013 /* SubscriptionManager.swift in Sources */,
+				BBBB00000000000000000014 /* VisionOCRService.swift in Sources */,
+				BBBB00000000000000000015 /* MockWeatherProvider.swift in Sources */,
+				BBBB00000000000000000016 /* WeatherKitWeatherProvider.swift in Sources */,
+				BBBB00000000000000000017 /* WeatherService.swift in Sources */,
+				BBBB00000000000000000018 /* ButtonStyles.swift in Sources */,
+				BBBB00000000000000000019 /* Extensions.swift in Sources */,
+				BBBB0000000000000000001A /* PDFExporter.swift in Sources */,
+				BBBB0000000000000000001B /* AppointmentViewModel.swift in Sources */,
+				BBBB0000000000000000001C /* DashboardViewModel.swift in Sources */,
+				BBBB0000000000000000001D /* MedicationViewModel.swift in Sources */,
+				BBBB0000000000000000001E /* WeatherViewModel.swift in Sources */,
+				BBBB0000000000000000001F /* AddAppointmentView.swift in Sources */,
+				BBBB00000000000000000020 /* AppointmentDetailView.swift in Sources */,
+				BBBB00000000000000000021 /* AppointmentListView.swift in Sources */,
+				BBBB00000000000000000022 /* PrepSummaryView.swift in Sources */,
+				BBBB00000000000000000023 /* QuantityStepperField.swift in Sources */,
+				BBBB00000000000000000024 /* WeatherCard.swift in Sources */,
+				BBBB00000000000000000025 /* DashboardView.swift in Sources */,
+				BBBB00000000000000000026 /* MedicationStatusCard.swift in Sources */,
+				BBBB00000000000000000027 /* DoseEntryRow.swift in Sources */,
+				BBBB00000000000000000028 /* DoseLogView.swift in Sources */,
+				BBBB00000000000000000029 /* HealthOverviewView.swift in Sources */,
+				BBBB0000000000000000002A /* HealthReadingConfirmationView.swift in Sources */,
+				BBBB0000000000000000002B /* HealthReadingScannerView.swift in Sources */,
+				BBBB0000000000000000002C /* ImagePicker.swift in Sources */,
+				BBBB0000000000000000002D /* AddMedicationView.swift in Sources */,
+				BBBB0000000000000000002E /* EditMedicationView.swift in Sources */,
+				BBBB0000000000000000002F /* MedicationDetailView.swift in Sources */,
+				BBBB00000000000000000030 /* MedicationListView.swift in Sources */,
+				BBBB00000000000000000031 /* OnboardingView.swift in Sources */,
+				BBBB00000000000000000032 /* PaywallView.swift in Sources */,
+				BBBB00000000000000000033 /* PharmacyPickerView.swift in Sources */,
+				BBBB00000000000000000034 /* SettingsView.swift in Sources */,
+				BBBB00000000000000000035 /* AddSymptomView.swift in Sources */,
+				BBBB00000000000000000036 /* SymptomLogView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

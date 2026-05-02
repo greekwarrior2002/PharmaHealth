@@ -12,8 +12,10 @@ struct HealthReadingConfirmationView: View {
     let image: UIImage
     let candidates: [ParsedHealthReading]
     let metricHint: HealthMetricType?
-    let onSave: (HealthReading) -> Void
+    let onSave: (HealthReading, Bool) -> Void
     let onRetake: () -> Void
+
+    @AppStorage("saveConfirmedReadingsToHealthKit") private var saveToHealthDefault: Bool = false
 
     @State private var metric: HealthMetricType
     @State private var primaryText: String
@@ -23,12 +25,13 @@ struct HealthReadingConfirmationView: View {
     @State private var note: String = ""
     @State private var validation: HealthReadingValidator.ValidationResult = .ok
     @State private var didDetectAny: Bool
+    @State private var alsoSaveToHealth: Bool = false
 
     init(
         image: UIImage,
         candidates: [ParsedHealthReading],
         metricHint: HealthMetricType?,
-        onSave: @escaping (HealthReading) -> Void,
+        onSave: @escaping (HealthReading, Bool) -> Void,
         onRetake: @escaping () -> Void
     ) {
         self.image = image
@@ -134,6 +137,13 @@ struct HealthReadingConfirmationView: View {
                         .lineLimit(2...4)
                 }
 
+                Section {
+                    Toggle("Also save to Apple Health", isOn: $alsoSaveToHealth)
+                } footer: {
+                    Text("Only readings you tap Confirm are saved. You can change this any time in Settings → Apple Health.")
+                        .font(.footnote)
+                }
+
                 if case let .suspicious(message) = validation {
                     Section {
                         Label(message, systemImage: "exclamationmark.triangle.fill")
@@ -175,7 +185,10 @@ struct HealthReadingConfirmationView: View {
                         .disabled(!canSave)
                 }
             }
-            .onAppear { revalidate() }
+            .onAppear {
+                revalidate()
+                alsoSaveToHealth = saveToHealthDefault
+            }
         }
     }
 
@@ -243,7 +256,7 @@ struct HealthReadingConfirmationView: View {
             note: note,
             isValidated: isValidated
         )
-        onSave(reading)
+        onSave(reading, alsoSaveToHealth)
         dismiss()
     }
 }

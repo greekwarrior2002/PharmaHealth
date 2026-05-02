@@ -10,6 +10,11 @@ struct PharmacyPickerView: View {
     let initialName: String
     let initialPhone: String
 
+    /// Optional default pharmacy shown at the top so the user can pick it
+    /// with one tap. Passed in as a lightweight `PharmacySearchResult` so the
+    /// picker stays free of SwiftData fetches.
+    let defaultPharmacy: PharmacySearchResult?
+
     /// Called when the user picks/saves a pharmacy.
     let onSelect: (PharmacySearchResult) -> Void
 
@@ -22,16 +27,19 @@ struct PharmacyPickerView: View {
     init(
         initialName: String = "",
         initialPhone: String = "",
+        defaultPharmacy: PharmacySearchResult? = nil,
         onSelect: @escaping (PharmacySearchResult) -> Void
     ) {
         self.initialName = initialName
         self.initialPhone = initialPhone
+        self.defaultPharmacy = defaultPharmacy
         self.onSelect = onSelect
     }
 
     var body: some View {
         NavigationStack {
             List {
+                defaultSection
                 searchSection
                 resultsSection
                 manualSection
@@ -52,6 +60,58 @@ struct PharmacyPickerView: View {
     }
 
     // MARK: - Sections
+
+    @ViewBuilder
+    private var defaultSection: some View {
+        if let def = defaultPharmacy {
+            Section {
+                Button {
+                    onSelect(def)
+                    MBHaptics.success()
+                    dismiss()
+                } label: {
+                    HStack(spacing: 12) {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.mbPrimary)
+                            .accessibilityHidden(true)
+                        VStack(alignment: .leading, spacing: 2) {
+                            HStack(spacing: 6) {
+                                Text(def.name)
+                                    .font(.headline)
+                                    .foregroundColor(.primary)
+                                defaultBadge
+                            }
+                            if !def.address.isEmpty {
+                                Text(def.address)
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .lineLimit(2)
+                            }
+                        }
+                        Spacer()
+                    }
+                    .padding(.vertical, 4)
+                    .contentShape(Rectangle())
+                }
+                .buttonStyle(.plain)
+                .accessibilityLabel("Use default pharmacy \(def.name)")
+            } header: {
+                Text("Default Pharmacy")
+            }
+        }
+    }
+
+    private var defaultBadge: some View {
+        Text("Default")
+            .font(.caption2.weight(.semibold))
+            .padding(.horizontal, 6)
+            .padding(.vertical, 2)
+            .background(
+                Capsule().fill(Color.mbPrimary.opacity(0.15))
+            )
+            .foregroundColor(.mbPrimary)
+            .accessibilityLabel("Default pharmacy")
+    }
 
     private var searchSection: some View {
         Section {

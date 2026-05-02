@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import MapKit
 
 struct MedicationDetailView: View {
     @Environment(\.modelContext) private var context
@@ -138,6 +139,22 @@ struct MedicationDetailView: View {
                 .mbPrimaryButton()
                 .accessibilityLabel("Call \(medication.pharmacyName)")
             }
+            if hasPharmacyDirections {
+                Button {
+                    openPharmacyDirections()
+                } label: {
+                    Label("Directions to pharmacy", systemImage: "map.fill")
+                }
+                .font(.headline)
+                .frame(minHeight: 52)
+                .frame(maxWidth: .infinity)
+                .foregroundColor(.mbPrimary)
+                .background(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(Color.mbPrimary, lineWidth: 1.5)
+                )
+                .accessibilityLabel("Open directions to \(medication.pharmacyName)")
+            }
             Button {
                 refillAmount = medication.refillQuantity
                 showingRefill = true
@@ -153,6 +170,44 @@ struct MedicationDetailView: View {
                     .stroke(Color.mbPrimary, lineWidth: 1.5)
             )
         }
+    }
+
+    private var pharmacyRecord: Pharmacy? {
+        guard let id = medication.pharmacyID else { return nil }
+        let descriptor = FetchDescriptor<Pharmacy>(
+            predicate: #Predicate { $0.id == id }
+        )
+        return try? context.fetch(descriptor).first
+    }
+
+    /// True when we have either coordinates or a non-empty address to hand to
+    /// Apple Maps. Without one of those, "Directions" would open a blank map.
+    private var hasPharmacyDirections: Bool {
+        if let p = pharmacyRecord {
+            if p.latitude != nil, p.longitude != nil { return true }
+            if !p.address.isEmpty { return true }
+        }
+        return false
+    }
+
+    private func openPharmacyDirections() {
+        guard let p = pharmacyRecord else { return }
+        if let lat = p.latitude, let lon = p.longitude {
+            let coord = CLLocationCoordinate2D(latitude: lat, longitude: lon)
+            let placemark = MKPlacemark(coordinate: coord)
+            let item = MKMapItem(placemark: placemark)
+            item.name = p.name.isEmpty ? "Pharmacy" : p.name
+            item.openInMaps(launchOptions: [
+                MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving
+            ])
+            return
+        }
+        // Fall back to address-only search if we don't have coordinates.
+        let query = "\(p.name) \(p.address)"
+            .trimmingCharacters(in: .whitespacesAndNewlines)
+        guard let encoded = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+              let url = URL(string: "http://maps.apple.com/?q=\(encoded)") else { return }
+        UIApplication.shared.open(url)
     }
 
     private var doseLogGrid: some View {

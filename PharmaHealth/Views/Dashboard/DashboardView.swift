@@ -8,10 +8,13 @@ struct DashboardView: View {
     @Query private var doseLog: [DoseEntry]
     @Query private var appointments: [Appointment]
     @Query private var profiles: [CaregiverProfile]
+    @Query(sort: \HealthReading.date, order: .reverse)
+    private var healthReadings: [HealthReading]
 
     @State private var viewModel = DashboardViewModel()
     @State private var medViewModel = MedicationViewModel()
     @State private var showingAddSymptom = false
+    @StateObject private var weather = WeatherViewModel()
 
     private var greeting: String {
         let hour = Calendar.current.component(.hour, from: .now)
@@ -35,12 +38,51 @@ struct DashboardView: View {
         viewModel.todaysScheduledDoses(medications: medications, allDoses: doseLog)
     }
 
+    /// Short, glanceable second line under the greeting. Built from data
+    /// already on screen so it never queries network/HealthKit. Each clause
+    /// only appears if the data is meaningful (no awkward "0 left" text on a
+    /// fresh install).
+    private var greetingSubtitle: String? {
+        var clauses: [String] = []
+
+        let pendingToday = todaysDoses.filter { $0.takenDate == nil && !$0.skipped }.count
+        if pendingToday > 0 {
+            clauses.append(pendingToday == 1
+                ? "1 medication left today"
+                : "\(pendingToday) medications left today")
+        }
+
+        if case .loaded(let snapshot) = weather.state {
+            clauses.append("\(snapshot.displayTemperature()), \(snapshot.conditionLabel.lowercased())")
+        }
+
+        if clauses.isEmpty, let latest = healthReadings.first {
+            let formatter = RelativeDateTimeFormatter()
+            formatter.unitsStyle = .full
+            let when = formatter.localizedString(for: latest.date, relativeTo: .now)
+            clauses.append("\(latest.metric.rawValue.lowercased()) logged \(when)")
+        }
+
+        return clauses.isEmpty ? nil : clauses.joined(separator: " · ")
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 24) {
-                    Text(greeting)
-                        .font(.largeTitle.weight(.bold))
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text(greeting)
+                            .font(.largeTitle.weight(.bold))
+                        if let subtitle = greetingSubtitle, !subtitle.isEmpty {
+                            Text(subtitle)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                                .accessibilityLabel(subtitle)
+                        }
+                    }
+                    .padding(.horizontal)
+
+                    WeatherCard(viewModel: weather)
                         .padding(.horizontal)
 
                     if let urgent = urgentMeds.first {
@@ -78,6 +120,9 @@ struct DashboardView: View {
             .navigationBarTitleDisplayMode(.inline)
             .sheet(isPresented: $showingAddSymptom) {
                 AddSymptomView()
+            }
+            .task {
+                await weather.refresh()
             }
         }
     }
